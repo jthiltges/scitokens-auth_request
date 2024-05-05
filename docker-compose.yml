@@ -1,0 +1,15 @@
+services:
+  scitokens-auth:
+    build: .
+    image: scitokens-auth_request
+    #ports:
+    #  - "8000:8000"
+    volumes:
+      - ./scitokens.cfg:/etc/scitokens/scitokens.cfg
+  nginx:
+    image: nginx:1.25
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./protected:/usr/share/nginx/html/protected
